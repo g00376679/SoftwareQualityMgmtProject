@@ -12,22 +12,44 @@ public class EmployerImpl implements Employer {
 	private String name;
 	private String title;
 	private double salary;
+	private Person per;
 	List<Person> person = new ArrayList();
 	
 	public EmployerImpl(String n) {
-		
+		this.name =  n;
 	}
+	
+	public EmployerImpl(Person p , String s , double d) {
+		this(s);
+		this.per = p;
+		this.salary = d;
+	}
+	
 
 	@Override
 	public void hire(Person p, String title, double salary) {
-		
-		
+		Employer emp  = new EmployerImpl( p,  title,  salary);
+		person.add((Person) emp);
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
 	}
 
 	@Override
 	public List<Person> getEmployees() {
-		int employeeCount= getEmployeeCount();
-		List<Person> p = new ArrayList(Arrays.asList(employeeCount));
+		List<Person> p = new ArrayList(Arrays.asList(getEmployeeCount()));
 		return p;
 	}
 
@@ -40,24 +62,32 @@ public class EmployerImpl implements Employer {
 	@Override
 	public boolean fire(Person p) {
 		
-		return false;
+		if(person.contains(p)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return name;
 	}
 
 	@Override
 	public boolean isEmployed(Person p) {
-		// TODO Auto-generated method stub
-		return false;
+		if(person.contains(p)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	@Override
 	public Person getHighestPaid() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import implementation.JobImpl;
 import implementation.PersonImpl;
+import interfaces.Job;
 import interfaces.Person;
 
 class TestPersonImpl {
 
 	private Person p;
+	
 	
 	@BeforeEach
 	void setUp() throws Exception {
